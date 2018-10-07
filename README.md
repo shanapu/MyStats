@@ -35,6 +35,7 @@ databases.cfg
 database table structure:
 
 mystats_player
+```
 		accountid
 		name
 		steamid
@@ -49,8 +50,10 @@ mystats_player
 		country
 		language
 		os
+```
 
 mystats_sessions
+```
 		sid
 		accountid
 		date
@@ -66,8 +69,9 @@ mystats_sessions
 		death
 		motd
 		duration
-
+```
 mystats_times
+```
 		accountid
 		server
 		aliveCT
@@ -77,8 +81,9 @@ mystats_times
 		spec
 		idle
 		duration
-
+```
 mystats_objectives
+```
 		accountid
 		server
 		score
@@ -115,8 +120,9 @@ mystats_objectives
 		winT
 		oneHPct
 		oneHPt
-
+```
 mystats_weapons
+```
 		accountid
 		server
 		weapon
@@ -134,8 +140,9 @@ mystats_weapons
 		noscopeT
 		boughtCT
 		boughtT
-
+```
 mystats_hits
+```
 		accountid
 		server
 		weapon
@@ -153,3 +160,4 @@ mystats_hits
 		left_legT
 		right_legCT
 		right_legT
+```
