@@ -35,128 +35,660 @@
 #pragma newdecls required
 
 /******************************************************************************
-                   Enums
+                   defines
 ******************************************************************************/
 
-enum OS
-{
-	OS_UNKNOWN = -1,
-	OS_WINDOWS = 0,
-	OS_MAC = 1,
-	OS_LINUX = 2,
-	OS_TOTAL = 3
-}
+#define DEAD 0
+#define ALIVE 1
+#define TOTAL 2
 
-enum TEAM
-{
-	TEAM_NONE,
-	TEAM_SPECTATOR,
-	TEAM_T,
-	TEAM_CT
-}
+#define KNIFE 0
+#define GLOCK 1
+#define HKP2000 2
+#define USP_SILENCER 3
+#define P250 4
+#define DEAGLE 5
+#define ELITE 6
+#define FIVESEVEN 7
+#define TEC9 8
+#define CZ75A 9
+#define REVOLVER 10
+#define NOVA 11
+#define XM1014 12
+#define MAG7 13
+#define SAWEDOFF 14
+#define BIZON 15
+#define MAC10 16
+#define MP9 17
+#define MP7 18
+#define MP5SD 19
+#define UMP45 20
+#define P90 21
+#define GALILAR 22
+#define AK47 23
+#define SG556 24
+#define FAMAS 25
+#define M4A1 26
+#define M4A1_SILENCER 27
+#define AUG 28
+#define SSG08 29
+#define AWP 30
+#define SCAR20 31
+#define G3SG1 32
+#define M249 33
+#define NEGEV 34
+#define HEGRENADE 35
+#define FLASHBANG 36
+#define SMOKEGRENADE 37
+#define INFERNO 38
+#define DECOY 39
+#define TASER 40
 
-enum STATUS
-{
-	DEAD,
-	ALIVE,
-	TOTAL
-}
-
-enum OBJECTIVE
-{
-	SCORE,
-	KILL,
-	DEATH,
-	ASSIST,
-	HEADSHOT,
-	SUICIDE,
-	TK,
-	DAMAGE,
-	DAMAGED,
-	MVP,
-	ROUND,
-	WIN,
-	ONEHP,
-	BOMB_PLANTED,
-	BOMB_DEFUSED,
-	BOMB_EXPLODE,
-	BOMB_ABORT,
-	BOMB_FAKE,
-	HOSTAGE,
-	VIP_KILL,
-	VIP_ESCAPE,
-	VIP_PLAY
-}
-
-enum WEAPON
-{
-	KNIFE,
-	GLOCK,
-	HKP2000,
-	USP_SILENCER,
-	P250,
-	DEAGLE,
-	ELITE,
-	FIVESEVEN,
-	TEC9,
-	CZ75A,
-	REVOLVER,
-	NOVA,
-	XM1014,
-	MAG7,
-	SAWEDOFF,
-	BIZON,
-	MAC10,
-	MP9,
-	MP7,
-	MP5SD,
-	UMP45,
-	P90,
-	GALILAR,
-	AK47,
-	SG556,
-	FAMAS,
-	M4A1,
-	M4A1_SILENCER,
-	AUG,
-	SSG08,
-	AWP,
-	SCAR20,
-	G3SG1,
-	M249,
-	NEGEV,
-	HEGRENADE,
-	FLASHBANG,
-	SMOKEGRENADE,
-	INFERNO,
-	DECOY,
-	TASER
-}
-
-enum WEAPONSTATS
-{
-	NULL_HITBOX,
-	HEAD,
-	CHEST,
-	STOMACH,
-	LEFT_ARM,
-	RIGHT_ARM,
-	LEFT_LEG,
-	RIGHT_LEG,
-	SHOT,
-	HIT,
-	KILL,
-	HEADSHOT,
-	NOSCOPE,
-	DAMAGE,
-	BOUGHT
-}
+#define OS_WINDOWS 0
+#define OS_MAC 1
+#define OS_LINUX 2
 
 /******************************************************************************
-                   Variables
+                   methodmaps
 ******************************************************************************/
 
-bool g_bDBConnected = false;
+methodmap Objectives < StringMap
+{
+	public Objectives()
+	{
+		StringMap map = new StringMap();
+
+		return view_as<Objectives>(map)
+	}
+
+	property int Score
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Score", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Score", value, true);
+		}
+	}
+
+	property int Kill
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Kill", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Kill", value, true);
+		}
+	}
+
+	property int Death
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Death", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Death", value, true);
+		}
+	}
+
+	property int Assist
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Assist", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Assist", value, true);
+		}
+	}
+
+	property int Headshot
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Headshot", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Headshot", value, true);
+		}
+	}
+
+	property int Suicide
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Suicide", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Suicide", value, true);
+		}
+	}
+
+	property int TK
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("TK", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("TK", value, true);
+		}
+	}
+
+	property int Damage
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Damage", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Damage", value, true);
+		}
+	}
+
+	property int Damaged
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Damaged", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Damaged", value, true);
+		}
+	}
+
+	property int MVP
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("MVP", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("MVP", value, true);
+		}
+	}
+
+	property int Round
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Round", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Round", value, true);
+		}
+	}
+
+	property int Win
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Win", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Win", value, true);
+		}
+	}
+
+	property int OneHP
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("OneHP", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("OneHP", value, true);
+		}
+	}
+
+	property int BombPlanted
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Planted", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Planted", value, true);
+		}
+	}
+
+	property int BombDefused
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Defuse", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Defuse", value, true);
+		}
+	}
+
+	property int BombExploded
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Explode", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Explode", value, true);
+		}
+	}
+
+	property int BombAbort
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Abort", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Abort", value, true);
+		}
+	}
+
+	property int BombFake
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Fake", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Fake", value, true);
+		}
+	}
+
+	property int Hostage
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Hostage", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Hostage", value, true);
+		}
+	}
+
+	property int VIPKill
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("VIPKill", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("VIPKill", value, true);
+		}
+	}
+
+	property int VIPEscape
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("VIPEscape", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("VIPEscape", value, true);
+		}
+	}
+
+	property int VIPPlay
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("VIPPlay", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("VIPPlay", value, true);
+		}
+	}
+}
+
+methodmap WeaponStats < StringMap
+{
+	public WeaponStats()
+	{
+		StringMap map = new StringMap();
+
+		return view_as<WeaponStats>(map)
+	}
+
+	property int Head
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Head", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Head", value, true);
+		}
+	}
+
+	property int Chest
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Chest", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Chest", value, true);
+		}
+	}
+
+	property int Stomach
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Stomach", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Stomach", value, true);
+		}
+	}
+
+	property int LeftArm
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("LeftArm", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("LeftArm", value, true);
+		}
+	}
+
+	property int RightArm
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("RightArm", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("RightArm", value, true);
+		}
+	}
+
+	property int LeftLeg
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("LeftLeg", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("LeftLeg", value, true);
+		}
+	}
+
+	property int RightLeg
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("RightLeg", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("RightLeg", value, true);
+		}
+	}
+
+	property int Shot
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Shot", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Shot", value, true);
+		}
+	}
+
+	property int Hit
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Hit", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Hit", value, true);
+		}
+	}
+
+	property int Kill
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Kill", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Kill", value, true);
+		}
+	}
+
+	property int Headshot
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Headshot", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Headshot", value, true);
+		}
+	}
+
+	property int NoScope
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("NoScope", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("NoScope", value, true);
+		}
+	}
+
+	property int Damage
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Damage", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Damage", value, true);
+		}
+	}
+
+	property int Bought
+	{
+		public get()
+		{
+			int value = 0;
+			this.GetValue("Bought", value);
+
+			return value;
+		}
+
+		public set(int value)
+		{
+			this.SetValue("Bought", value, true);
+		}
+	}
+}
+
+int g_iTimes[MAXPLAYERS + 1][4][3];
 
 static char g_sWeapons[41][] = {	"knife",
 								"glock",
@@ -201,9 +733,18 @@ static char g_sWeapons[41][] = {	"knife",
 								"taser"
 };
 
+WeaponStats g_iWeapons[MAXPLAYERS + 1][4][sizeof(g_sWeapons)];
+Objectives g_iObjectives[MAXPLAYERS + 1][4];
+
+/******************************************************************************
+                   Variables
+******************************************************************************/
+
+bool g_bDBConnected = false;
+
+char g_sOSConVars[3][32];
 char g_sServerName[64];
 char g_sSQLBuffer[2048];
-char g_sOSConVars[OS_TOTAL][32];
 char g_sOS[MAXPLAYERS + 1][8];
 
 ConVar gc_sServerName;
@@ -226,10 +767,6 @@ int g_iSessionID[MAXPLAYERS + 1] = {-1, ...};
 int g_iQueriesOS[MAXPLAYERS + 1] = {-1, ...};
 int g_iMotdConVar[MAXPLAYERS + 1] = {-1, ...};
 int g_iClanID[MAXPLAYERS + 1] = {-1, ...};
-
-int g_iObjectives[MAXPLAYERS + 1][TEAM][OBJECTIVE];
-int g_iTimes[MAXPLAYERS + 1][TEAM][STATUS];
-int g_iWeapons[MAXPLAYERS + 1][TEAM][WEAPON][WEAPONSTATS];
 
 /******************************************************************************
                    Start
@@ -343,7 +880,7 @@ public Action Event_ItemPurchase(Event event, char[] name, bool dontBroadcast)
 	ReplaceString(weapon, sizeof(weapon), "weapon_", "", false);
 	int weaponNum = GetWeaponNum(weapon);
 
-	g_iWeapons[client][GetClientTeam(client)][weaponNum][BOUGHT]++;
+	g_iWeapons[client][GetClientTeam(client)][weaponNum].Bought++;
 }
 
 public Action Event_NadesDetonate(Event event, char[] name, bool dontBroadcast)
@@ -366,7 +903,7 @@ public Action Event_NadesDetonate(Event event, char[] name, bool dontBroadcast)
 
 	int weaponNum = GetWeaponNum(nade);
 
-	g_iWeapons[client][GetClientTeam(client)][weaponNum][SHOT]++;
+	g_iWeapons[client][GetClientTeam(client)][weaponNum].Shot++;
 }
 
 public Action Event_WeaponFire(Event event, char[] name, bool dontBroadcast)
@@ -388,14 +925,14 @@ public Action Event_WeaponFire(Event event, char[] name, bool dontBroadcast)
 	if (0 < weaponNum < 35 || weaponNum == 40)
 	{
 		int iTeam = GetClientTeam(attacker);
-		g_iWeapons[attacker][iTeam][weaponNum][SHOT]++;
+		g_iWeapons[attacker][iTeam][weaponNum].Shot++;
 
 		if (weaponNum == 1 || weaponNum == 25) //glock or famas
 		{
 			if (GetEntProp(GetEntPropEnt(attacker, Prop_Send, "m_hActiveWeapon"), Prop_Send, "m_bBurstMode") == 1)
 			{
-				g_iWeapons[attacker][iTeam][weaponNum][SHOT]++;
-				g_iWeapons[attacker][iTeam][weaponNum][SHOT]++;
+				g_iWeapons[attacker][iTeam][weaponNum].Shot++;
+				g_iWeapons[attacker][iTeam][weaponNum].Shot++;
 			}
 		}
 	}
@@ -429,21 +966,31 @@ public Action Event_PlayerHurt(Event event, char[] name, bool dontBroadcast)
 	ReplaceString(weapon, sizeof(weapon), "weapon_", "", false);
 	int weaponNum = GetWeaponNum(weapon);
 
-	int hitgroup = event.GetInt("hitgroup");
 	int iTeam = GetClientTeam(attacker);
 
 	if (IsFakeClient(victim) && !gc_bCountBot.BoolValue)
 	{
-		g_iWeapons[attacker][iTeam][weaponNum][SHOT]--;
+		g_iWeapons[attacker][iTeam][weaponNum].Shot--;
 		return;
 	}
 
-	g_iWeapons[attacker][iTeam][weaponNum][HIT]++;
-	g_iWeapons[attacker][iTeam][weaponNum][hitgroup]++;
-	g_iWeapons[attacker][iTeam][weaponNum][DAMAGE] += damage;
+	g_iWeapons[attacker][iTeam][weaponNum].Hit++;
 
-	g_iObjectives[attacker][iTeam][DAMAGE] += damage;
-	g_iObjectives[victim][GetClientTeam(victim)][DAMAGED] += damage;
+	switch(event.GetInt("hitgroup"))
+	{
+		case 1: g_iWeapons[attacker][iTeam][weaponNum].Head++;
+		case 2: g_iWeapons[attacker][iTeam][weaponNum].Chest++;
+		case 3: g_iWeapons[attacker][iTeam][weaponNum].Stomach++;
+		case 4: g_iWeapons[attacker][iTeam][weaponNum].LeftArm++;
+		case 5: g_iWeapons[attacker][iTeam][weaponNum].RightArm++;
+		case 6: g_iWeapons[attacker][iTeam][weaponNum].LeftLeg++;
+		case 7: g_iWeapons[attacker][iTeam][weaponNum].RightLeg++;
+	}
+
+	g_iWeapons[attacker][iTeam][weaponNum].Damage += damage;
+
+	g_iObjectives[attacker][iTeam].Damage += damage;
+	g_iObjectives[victim][GetClientTeam(victim)].Damaged += damage;
 }
 
 public Action Event_PlayerDeath(Event event, char[] name, bool dontBroadcast)
@@ -473,44 +1020,44 @@ public Action Event_PlayerDeath(Event event, char[] name, bool dontBroadcast)
 
 	if (IsValidClient(assister, false, true))
 	{
-		g_iObjectives[assister][GetClientTeam(assister)][ASSIST]++;
+		g_iObjectives[assister][GetClientTeam(assister)].Assist++;
 	}
 
 	if (!IsValidClient(attacker, true, true) || attacker == victim)
 	{
-		g_iObjectives[victim][GetClientTeam(victim) == CS_TEAM_CT ? 2 : 3][SUICIDE]++;
+		g_iObjectives[victim][GetClientTeam(victim) == CS_TEAM_CT ? 2 : 3].Suicide++;
 	}
 	else if (iAttackerTeam == GetClientTeam(victim))
 	{
-		g_iObjectives[attacker][iAttackerTeam][gc_bFFA.BoolValue ? KILL : TK]++;
-		g_iWeapons[attacker][iAttackerTeam][weaponNum][KILL]++;
+		gc_bFFA.BoolValue ? g_iObjectives[attacker][iAttackerTeam].Kill++ : g_iObjectives[attacker][iAttackerTeam].TK++;
+		g_iWeapons[attacker][iAttackerTeam][weaponNum].Kill++;
 
 		if (headshot)
 		{
-			g_iWeapons[attacker][iAttackerTeam][weaponNum][HEADSHOT]++;
-			g_iObjectives[attacker][iAttackerTeam][HEADSHOT]++;
+			g_iWeapons[attacker][iAttackerTeam][weaponNum].Headshot++;
+			g_iObjectives[attacker][iAttackerTeam].Headshot++;
 		}
 
-		if(27 < weaponNum < 32 && GetEntProp(attacker, Prop_Data, "m_iFOV") <= 0 || GetEntProp(attacker, Prop_Data, "m_iFOV") == GetEntProp(attacker, Prop_Data, "m_iDefaultFOV"))
+		if (27 < weaponNum < 32 && GetEntProp(attacker, Prop_Data, "m_iFOV") <= 0 || GetEntProp(attacker, Prop_Data, "m_iFOV") == GetEntProp(attacker, Prop_Data, "m_iDefaultFOV"))
 		{
-			g_iWeapons[attacker][iAttackerTeam][weaponNum][NOSCOPE]++;
+			g_iWeapons[attacker][iAttackerTeam][weaponNum].NoScope++;
 		}
 	}
 	else
 	{
-		g_iObjectives[victim][GetClientTeam(victim)][DEATH]++;
-		g_iObjectives[attacker][iAttackerTeam][KILL]++;
-		g_iWeapons[attacker][iAttackerTeam][weaponNum][KILL]++;
+		g_iObjectives[victim][GetClientTeam(victim)].Death++;
+		g_iObjectives[attacker][iAttackerTeam].Kill++;
+		g_iWeapons[attacker][iAttackerTeam][weaponNum].Kill++;
 
 		if (headshot)
 		{
-			g_iWeapons[attacker][iAttackerTeam][weaponNum][HEADSHOT]++;
-			g_iObjectives[attacker][iAttackerTeam][HEADSHOT]++;
+			g_iWeapons[attacker][iAttackerTeam][weaponNum].Headshot++;
+			g_iObjectives[attacker][iAttackerTeam].Headshot++;
 		}
 
-		if(27 < weaponNum < 32 && GetEntProp(attacker, Prop_Data, "m_iFOV") <= 0 || GetEntProp(attacker, Prop_Data, "m_iFOV") == GetEntProp(attacker, Prop_Data, "m_iDefaultFOV"))
+		if (27 < weaponNum < 32 && GetEntProp(attacker, Prop_Data, "m_iFOV") <= 0 || GetEntProp(attacker, Prop_Data, "m_iFOV") == GetEntProp(attacker, Prop_Data, "m_iDefaultFOV"))
 		{
-			g_iWeapons[attacker][iAttackerTeam][weaponNum][NOSCOPE]++;
+			g_iWeapons[attacker][iAttackerTeam][weaponNum].NoScope++;
 		}
 	}
 }
@@ -525,7 +1072,7 @@ public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcas
 		if (!IsValidClient(i, false, true))
 			continue;
 
-		g_iObjectives[i][GetClientTeam(i)][ROUND]++;
+		g_iObjectives[i][GetClientTeam(i)].Round++;
 	}
 }
 
@@ -545,16 +1092,16 @@ public Action Event_RoundEnd(Event event, const char[] name, bool dontBroadcast)
 
 		if (iTeam == winner)
 		{
-			g_iObjectives[i][winner][WIN]++;
+			g_iObjectives[i][winner].Win++;
 		}
 
 		if (GetClientHealth(i) == 1)
 		{
-			g_iObjectives[i][iTeam][ONEHP]++;
+			g_iObjectives[i][iTeam].OneHP++;
 		}
 
-		g_iObjectives[i][TEAM_T][BOMB_ABORT] = 0;
-		g_iObjectives[i][TEAM_CT][BOMB_ABORT] = 0;
+		g_iObjectives[i][CS_TEAM_T].BombAbort = 0;
+		g_iObjectives[i][CS_TEAM_CT].BombAbort = 0;
 	}
 }
 
@@ -568,7 +1115,7 @@ public Action Event_MVP(Event event, const char[] name, bool dontBroadcast)
 	if (!IsValidClient(client, false, true))
 		return;
 
-	g_iObjectives[client][GetClientTeam(client)][MVP]++;
+	g_iObjectives[client][GetClientTeam(client)].MVP++;
 }
 
 public Action Event_BombAbortPlant(Event event, const char[] name, bool dontBroadcast)
@@ -581,7 +1128,7 @@ public Action Event_BombAbortPlant(Event event, const char[] name, bool dontBroa
 	if (!IsValidClient(client, false, true))
 		return;
 
-	g_iObjectives[client][TEAM_T][BOMB_ABORT] = 1;
+	g_iObjectives[client][CS_TEAM_T].BombAbort = 1;
 }
 
 
@@ -595,7 +1142,7 @@ public Action Event_BombAbortDefuse(Event event, const char[] name, bool dontBro
 	if (!IsValidClient(client, false, true))
 		return;
 
-	g_iObjectives[client][TEAM_CT][BOMB_ABORT] = 1;
+	g_iObjectives[client][CS_TEAM_CT].BombAbort = 1;
 }
 
 public Action Event_BombPlanted(Event event, const char[] name, bool dontBroadcast)
@@ -608,11 +1155,11 @@ public Action Event_BombPlanted(Event event, const char[] name, bool dontBroadca
 	if (!IsValidClient(client, false, true))
 		return;
 
-	g_iObjectives[client][TEAM_T][BOMB_PLANTED]++;
+	g_iObjectives[client][CS_TEAM_T].BombPlanted++;
 
-	if (g_iObjectives[client][TEAM_T][BOMB_ABORT] == 1)
+	if (g_iObjectives[client][CS_TEAM_T].BombAbort == 1)
 	{
-		g_iObjectives[client][TEAM_T][BOMB_FAKE]++;
+		g_iObjectives[client][CS_TEAM_T].BombFake++;
 	}
 }
 
@@ -626,11 +1173,11 @@ public Action Event_BombDefused(Event event, const char[] name, bool dontBroadca
 	if (!IsValidClient(client, false, true))
 		return;
 
-	g_iObjectives[client][TEAM_CT][BOMB_DEFUSED]++;
+	g_iObjectives[client][CS_TEAM_CT].BombDefused++;
 
-	if (g_iObjectives[client][TEAM_CT][BOMB_ABORT] == 1)
+	if (g_iObjectives[client][CS_TEAM_CT].BombAbort == 1)
 	{
-		g_iObjectives[client][TEAM_CT][BOMB_FAKE]++;
+		g_iObjectives[client][CS_TEAM_CT].BombFake++;
 	}
 }
 
@@ -644,7 +1191,7 @@ public Action Event_BombExploded(Event event, const char[] name, bool dontBroadc
 	if (!IsValidClient(client, false, true))
 		return;
 
-	g_iObjectives[client][TEAM_T][BOMB_EXPLODE]++;
+	g_iObjectives[client][CS_TEAM_T].BombExploded++;
 }
 
 public Action Event_HostageRescued(Event event, const char[] name, bool dontBroadcast)
@@ -657,7 +1204,7 @@ public Action Event_HostageRescued(Event event, const char[] name, bool dontBroa
 	if (!IsValidClient(client, false, true))
 		return;
 
-	g_iObjectives[client][TEAM_CT][HOSTAGE]++;
+	g_iObjectives[client][CS_TEAM_CT].Hostage++;
 }
 
 public Action Event_VipKilled(Event event, const char[] name, bool dontBroadcast)
@@ -671,8 +1218,8 @@ public Action Event_VipKilled(Event event, const char[] name, bool dontBroadcast
 	if (!IsValidClient(attacker, false, true))
 		return;
 
-	g_iObjectives[attacker][TEAM_T][VIP_KILL]++;
-	g_iObjectives[victim][TEAM_CT][VIP_PLAY]++;
+	g_iObjectives[attacker][CS_TEAM_T].VIPKill++;
+	g_iObjectives[victim][CS_TEAM_CT].VIPPlay++;
 }
 
 public Action Event_VipEscaped(Event event, const char[] name, bool dontBroadcast)
@@ -685,8 +1232,8 @@ public Action Event_VipEscaped(Event event, const char[] name, bool dontBroadcas
 	if (!IsValidClient(client, false, true))
 		return;
 
-	g_iObjectives[client][TEAM_CT][VIP_ESCAPE]++;
-	g_iObjectives[client][TEAM_CT][VIP_PLAY]++;
+	g_iObjectives[client][CS_TEAM_CT].VIPEscape++;
+	g_iObjectives[client][CS_TEAM_CT].VIPPlay++;
 }
 
 /******************************************************************************
@@ -699,7 +1246,7 @@ public void OnConfigsExecuted()
 	if (g_sServerName[0] == '\0' )
 	{
 		int ip = (FindConVar("hostip")).IntValue;
-		Format(g_sServerName, sizeof(g_sServerName), "%d.%d.%d.%d:%d", ((ip & 0xFF000000) >> 24) & 0xFF, ((ip & 0x00FF0000) >> 16) & 0xFF, ((ip & 0x0000FF00) >>  8) & 0xFF, ((ip & 0x000000FF) >>  0) & 0xFF, (FindConVar("hostport")).IntValue);
+		Format(g_sServerName, sizeof(g_sServerName), "%i.%i.%i.%i:%i", ((ip & 0xFF000000) >> 24) & 0xFF, ((ip & 0x00FF0000) >> 16) & 0xFF, ((ip & 0x0000FF00) >>  8) & 0xFF, ((ip & 0x000000FF) >>  0) & 0xFF, (FindConVar("hostport")).IntValue);
 	}
 
 	gc_bFFA = FindConVar("mp_teammates_are_enemies");
@@ -727,24 +1274,18 @@ public void OnClientPostAdminCheck(int client)
 		DB_Connect();
 	}
 
-	for (int i = 0; i < view_as<int>(TEAM); i++)
+	for (int i = 0; i < 4; i++)
 	{
-		for (int j = 0; j < view_as<int>(OBJECTIVE); j++)
-		{
-			g_iObjectives[client][i][j] = 0;
-		}
+		g_iObjectives[client][i].Clear();
 
-		for (int j = 0; j < view_as<int>(STATUS); j++)
+		for (int j = 0; j < 3; j++)
 		{
 			g_iTimes[client][i][j] = 0;
 		}
 
-		for (int j = 0; j < view_as<int>(WEAPON); j++)
+		for (int j = 0; j < sizeof(g_sWeapons); j++)
 		{
-			for (int k = 0; k < view_as<int>(WEAPONSTATS); k++)
-			{
-				g_iWeapons[client][i][j][k] = 0;
-			}
+			g_iWeapons[client][i][j].Clear();
 		}
 	}
 
@@ -760,7 +1301,7 @@ public void OnClientPutInServer(int client)
 
 	QueryClientConVar(client, "cl_clanid", Callback_QueryClientConVar_Clan);
 
-	for(int i = 0; i < view_as<int>(OS_TOTAL); i++)
+	for(int i = 0; i < sizeof(g_sOSConVars); i++) //3
 	{
 		QueryClientConVar(client, g_sOSConVars[i], Callback_QueryClientConVar_OS);
 	}
@@ -816,7 +1357,7 @@ public void Callback_QueryClientConVar_OS(QueryCookie cookie, int client, ConVar
 	if (result == ConVarQuery_NotFound)
 	{
 		g_iQueriesOS[client]++;
-		if (g_iQueriesOS[client] >= view_as<int>(OS_TOTAL))
+		if (g_iQueriesOS[client] >= sizeof(g_sOSConVars)) //3
 		{
 			CloseHandle(g_hTimerQueryOS[client]);
 			g_hTimerQueryOS[client] = INVALID_HANDLE;
@@ -827,7 +1368,7 @@ public void Callback_QueryClientConVar_OS(QueryCookie cookie, int client, ConVar
 	else
 	{
 		int os;
-		for( int i = 0; i < view_as<int>(OS_TOTAL); i++)
+		for( int i = 0; i < sizeof(g_sOSConVars); i++) //3
 		{
 			if (StrEqual(cvarName, g_sOSConVars[i]))
 			{
@@ -880,7 +1421,7 @@ public void OnClientDisconnect(int client)
 
 	g_iClientCount--;
 
-	g_iObjectives[client][TEAM_NONE][SCORE] = CS_GetClientContributionScore(client);
+	g_iObjectives[client][CS_TEAM_NONE].Score = CS_GetClientContributionScore(client);
 
 	DB_UpdatePlayer(client);
 }
@@ -1069,24 +1610,18 @@ void DB_UpdateAllPlayer(bool force)
 		DB_UpdatePlayer_Hits(i ,txn);
 		DB_UpdatePlayer_Times(i ,txn);
 
-		for (int h = 0; h < view_as<int>(TEAM); h++)
+		for (int h = 0; h < 4; h++)
 		{
-			for (int j = 0; j < view_as<int>(OBJECTIVE); j++)
-			{
-				g_iObjectives[i][h][j] = 0;
-			}
+			g_iObjectives[i][h].Clear();
 
-			for (int j = 0; j < view_as<int>(STATUS); j++)
+			for (int j = 0; j < 3; j++)
 			{
 				g_iTimes[i][h][j] = 0;
 			}
 
-			for (int j = 0; j < view_as<int>(WEAPON); j++)
+			for (int j = 0; j < sizeof(g_sWeapons); j++)
 			{
-				for (int k = 0; k < view_as<int>(WEAPONSTATS); k++)
-				{
-					g_iWeapons[i][h][j][k] = 0;
-				}
+				g_iWeapons[i][h][j].Clear();
 			}
 		}
 
@@ -1162,7 +1697,7 @@ void DB_AddPlayer(int client)
 	char flags[32];
 	GetAdminFlagsEx(client, flags);
 
-	g_iTimes[client][TEAM_NONE][TOTAL] = GetTime();
+	g_iTimes[client][CS_TEAM_NONE][TOTAL] = GetTime();
 
 	char country[24];
 	GeoipCountry(ip, country, sizeof(country));
@@ -1172,12 +1707,12 @@ void DB_AddPlayer(int client)
 
 	Format(g_sSQLBuffer, sizeof(g_sSQLBuffer),
 		"INSERT IGNORE INTO mystats_player (accountid, name, steamid, steamid64, ip, flags, firstjoin, lastjoin, firstserver, lastserver, country) VALUES ('%i', '%s', '%s', '%s', '%s', '%s', '%i', '%i', '%s', '%s', '%s') ON DUPLICATE KEY UPDATE name = '%s', ip = '%s', flags = '%s', lastjoin = '%i', lastserver = '%s', country = '%s';", 
-		g_iID[client], name, steamid, steamid64, ip, flags, g_iTimes[client][TEAM_NONE][TOTAL], g_iTimes[client][TEAM_NONE][TOTAL], g_sServerName, g_sServerName, country, name, ip, flags, g_iTimes[client][TEAM_NONE][TOTAL], g_sServerName, country);
+		g_iID[client], name, steamid, steamid64, ip, flags, g_iTimes[client][CS_TEAM_NONE][TOTAL], g_iTimes[client][CS_TEAM_NONE][TOTAL], g_sServerName, g_sServerName, country, name, ip, flags, g_iTimes[client][CS_TEAM_NONE][TOTAL], g_sServerName, country);
 	g_hDB.Query(DB_AddPlayer_Callback, g_sSQLBuffer, client ,DBPrio_High);
 
 	Format(g_sSQLBuffer, sizeof(g_sSQLBuffer),
 		"INSERT INTO mystats_sessions (date, server, accountid, name, ip, flags, map, players) VALUES ('%i', '%s', '%i', '%s', '%s', '%s', '%s', '%i')", 
-		g_iTimes[client][TEAM_NONE][TOTAL], g_sServerName, g_iID[client], name, ip, flags, map, g_iClientCount - 1);
+		g_iTimes[client][CS_TEAM_NONE][TOTAL], g_sServerName, g_iID[client], name, ip, flags, map, g_iClientCount - 1);
 	g_hDB.Query(DB_AddConnection_Callback, g_sSQLBuffer, GetClientUserId(client), DBPrio_Normal);
 }
 
@@ -1208,26 +1743,26 @@ public void DB_AddConnection_Callback(Handle owner, Handle hndl, const char[] er
 
 void DB_UpdatePlayer_Session(int client, Transaction txn)
 {
-	int duration = GetTime() - g_iTimes[client][TEAM_NONE][TOTAL];
+	int duration = GetTime() - g_iTimes[client][CS_TEAM_NONE][TOTAL];
 
 	char language[6];
 	GetLanguageInfo(GetClientLanguage(client), language, sizeof(language), _, _);
 
 	Format(g_sSQLBuffer, sizeof(g_sSQLBuffer),
 		"UPDATE mystats_sessions, mystats_player SET mystats_sessions.score = '%i', mystats_sessions.kills = '%i', mystats_sessions.death = '%i', mystats_sessions.duration = '%i', mystats_sessions.motd = '%i', mystats_sessions.clanid = '%i', mystats_player.os = '%s' , mystats_player.language = '%s', mystats_player.clanid = '%i' WHERE mystats_player.accountid = '%i' AND mystats_sessions.sid = '%i'", 
-		g_iObjectives[client][TEAM_NONE][SCORE], g_iObjectives[client][TEAM_CT][KILL] + g_iObjectives[client][TEAM_T][KILL], g_iObjectives[client][TEAM_CT][DEATH] + g_iObjectives[client][TEAM_T][DEATH], duration, g_iMotdConVar[client], g_iClanID[client], g_sOS[client], language, g_iClanID[client], g_iID[client], g_iSessionID[client]);
+		g_iObjectives[client][CS_TEAM_NONE].Score, g_iObjectives[client][CS_TEAM_CT].Kill + g_iObjectives[client][CS_TEAM_T].Kill, g_iObjectives[client][CS_TEAM_CT].Death + g_iObjectives[client][CS_TEAM_T].Death, duration, g_iMotdConVar[client], g_iClanID[client], g_sOS[client], language, g_iClanID[client], g_iID[client], g_iSessionID[client]);
 	txn.AddQuery(g_sSQLBuffer);
 }
 
 void DB_UpdatePlayer_Times(int client, Transaction txn)
 {
-	int duration = GetTime() - g_iTimes[client][TEAM_NONE][TOTAL];
-	int idle = duration - g_iTimes[client][TEAM_CT][ALIVE] - g_iTimes[client][TEAM_T][ALIVE] - g_iTimes[client][TEAM_CT][DEAD] - g_iTimes[client][TEAM_T][DEAD] - g_iTimes[client][TEAM_SPECTATOR][DEAD];
+	int duration = GetTime() - g_iTimes[client][CS_TEAM_NONE][TOTAL];
+	int idle = duration - g_iTimes[client][CS_TEAM_CT][ALIVE] - g_iTimes[client][CS_TEAM_T][ALIVE] - g_iTimes[client][CS_TEAM_CT][DEAD] - g_iTimes[client][CS_TEAM_T][DEAD] - g_iTimes[client][CS_TEAM_SPECTATOR][DEAD];
 
 	Format(g_sSQLBuffer, sizeof(g_sSQLBuffer),
 		"INSERT IGNORE INTO mystats_times (accountid, server, aliveCT, aliveT, deadCT, deadT, spec, idle, duration) VALUES ('%i', '%s', '%i', '%i', '%i', '%i', '%i', '%i', '%i') ON DUPLICATE KEY UPDATE aliveCT = aliveCT + '%i', aliveT = aliveT + '%i', deadCT = deadCT + '%i', deadT = deadT + '%i', spec = spec + '%i', idle = idle + '%i', duration = duration + '%i';", 
-		g_iID[client], g_sServerName, g_iTimes[client][TEAM_CT][ALIVE], g_iTimes[client][TEAM_T][ALIVE], g_iTimes[client][TEAM_CT][DEAD], g_iTimes[client][TEAM_T][DEAD], g_iTimes[client][TEAM_SPECTATOR][DEAD], idle, duration,
-									  g_iTimes[client][TEAM_CT][ALIVE], g_iTimes[client][TEAM_T][ALIVE], g_iTimes[client][TEAM_CT][DEAD], g_iTimes[client][TEAM_T][DEAD], g_iTimes[client][TEAM_SPECTATOR][DEAD], idle, duration);
+		g_iID[client], g_sServerName, g_iTimes[client][CS_TEAM_CT][ALIVE], g_iTimes[client][CS_TEAM_T][ALIVE], g_iTimes[client][CS_TEAM_CT][DEAD], g_iTimes[client][CS_TEAM_T][DEAD], g_iTimes[client][CS_TEAM_SPECTATOR][DEAD], idle, duration,
+									  g_iTimes[client][CS_TEAM_CT][ALIVE], g_iTimes[client][CS_TEAM_T][ALIVE], g_iTimes[client][CS_TEAM_CT][DEAD], g_iTimes[client][CS_TEAM_T][DEAD], g_iTimes[client][CS_TEAM_SPECTATOR][DEAD], idle, duration);
 	txn.AddQuery(g_sSQLBuffer);
 }
 
@@ -1235,31 +1770,31 @@ void DB_UpdatePlayer_Objectives(int client, Transaction txn)
 {
 	Format(g_sSQLBuffer, sizeof(g_sSQLBuffer),
 		"INSERT IGNORE INTO mystats_objectives (accountid, server, score, killCT, killT, deathCT, deathT, assistCT, assistT, headshotCT, headshotT, suicideCT, suicideT, teamkillCT, teamkillT, damageCT, damageT, damagedCT, damagedT, plant, defuse, fakeplant, fakedefuse, explode, rescued, vip_kill, vip_escape, vip_play, mvpCT, mvpT, roundCT, roundT, winCT, winT, oneHPct, oneHPt) VALUES ('%i', '%s', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i') ON DUPLICATE KEY UPDATE score = score + '%i', killCT = killCT + '%i', killT = killT + '%i', deathCT = deathCT + '%i', deathT = deathT + '%i', assistCT = assistCT + '%i', assistT = assistT + '%i', headshotCT = headshotCT + '%i', headshotT = headshotT + '%i', suicideCT = suicideCT + '%i', suicideT = suicideT + '%i', teamkillCT = teamkillCT + '%i', teamkillT = teamkillT + '%i', damageCT = damageCT + '%i', damageT = damageT + '%i', damagedCT = damagedCT + '%i', damagedT = damagedT + '%i', plant = plant + '%i', defuse = defuse + '%i', fakeplant = fakeplant + '%i', fakedefuse = fakedefuse + '%i', explode = explode + '%i', rescued = rescued + '%i', vip_kill = vip_kill + '%i', vip_escape = vip_escape + '%i', vip_play = vip_play + '%i', mvpCT = mvpCT + '%i', mvpT = mvpT + '%i', roundCT = roundCT + '%i', roundT = roundT + '%i', winCT = winCT + '%i', winT = winT + '%i', oneHPct = oneHPct + '%i', oneHPt = oneHPt + '%i';", 
-		g_iID[client], g_sServerName, g_iObjectives[client][TEAM_NONE][SCORE], g_iObjectives[client][TEAM_CT][KILL], g_iObjectives[client][TEAM_T][KILL], g_iObjectives[client][TEAM_CT][DEATH], g_iObjectives[client][TEAM_T][DEATH], g_iObjectives[client][TEAM_CT][ASSIST], g_iObjectives[client][TEAM_T][ASSIST], g_iObjectives[client][TEAM_CT][HEADSHOT], g_iObjectives[client][TEAM_T][HEADSHOT], g_iObjectives[client][TEAM_CT][SUICIDE], g_iObjectives[client][TEAM_T][SUICIDE], g_iObjectives[client][TEAM_CT][TK], g_iObjectives[client][TEAM_T][TK], g_iObjectives[client][TEAM_CT][DAMAGE], g_iObjectives[client][TEAM_T][DAMAGE], g_iObjectives[client][TEAM_CT][DAMAGED], g_iObjectives[client][TEAM_T][DAMAGED], g_iObjectives[client][TEAM_T][BOMB_PLANTED], g_iObjectives[client][TEAM_CT][BOMB_DEFUSED], g_iObjectives[client][TEAM_T][BOMB_FAKE], g_iObjectives[client][TEAM_CT][BOMB_FAKE], g_iObjectives[client][TEAM_T][BOMB_EXPLODE], g_iObjectives[client][TEAM_CT][HOSTAGE], g_iObjectives[client][TEAM_T][VIP_KILL], g_iObjectives[client][TEAM_CT][VIP_ESCAPE], g_iObjectives[client][TEAM_CT][VIP_PLAY], g_iObjectives[client][TEAM_CT][MVP], g_iObjectives[client][TEAM_T][MVP], g_iObjectives[client][TEAM_CT][ROUND], g_iObjectives[client][TEAM_T][ROUND], g_iObjectives[client][TEAM_CT][WIN], g_iObjectives[client][TEAM_T][WIN], g_iObjectives[client][TEAM_CT][ONEHP], g_iObjectives[client][TEAM_T][ONEHP], 
-									  g_iObjectives[client][TEAM_NONE][SCORE], g_iObjectives[client][TEAM_CT][KILL], g_iObjectives[client][TEAM_T][KILL], g_iObjectives[client][TEAM_CT][DEATH], g_iObjectives[client][TEAM_T][DEATH], g_iObjectives[client][TEAM_CT][ASSIST], g_iObjectives[client][TEAM_T][ASSIST], g_iObjectives[client][TEAM_CT][HEADSHOT], g_iObjectives[client][TEAM_T][HEADSHOT], g_iObjectives[client][TEAM_CT][SUICIDE], g_iObjectives[client][TEAM_T][SUICIDE], g_iObjectives[client][TEAM_CT][TK], g_iObjectives[client][TEAM_T][TK], g_iObjectives[client][TEAM_CT][DAMAGE], g_iObjectives[client][TEAM_T][DAMAGE], g_iObjectives[client][TEAM_CT][DAMAGED], g_iObjectives[client][TEAM_T][DAMAGED], g_iObjectives[client][TEAM_T][BOMB_PLANTED], g_iObjectives[client][TEAM_CT][BOMB_DEFUSED], g_iObjectives[client][TEAM_T][BOMB_FAKE], g_iObjectives[client][TEAM_CT][BOMB_FAKE], g_iObjectives[client][TEAM_T][BOMB_EXPLODE], g_iObjectives[client][TEAM_CT][HOSTAGE], g_iObjectives[client][TEAM_T][VIP_KILL], g_iObjectives[client][TEAM_CT][VIP_ESCAPE], g_iObjectives[client][TEAM_CT][VIP_PLAY], g_iObjectives[client][TEAM_CT][MVP], g_iObjectives[client][TEAM_T][MVP], g_iObjectives[client][TEAM_CT][ROUND], g_iObjectives[client][TEAM_T][ROUND], g_iObjectives[client][TEAM_CT][WIN], g_iObjectives[client][TEAM_T][WIN], g_iObjectives[client][TEAM_CT][ONEHP], g_iObjectives[client][TEAM_T][ONEHP]);
+		g_iID[client], g_sServerName, g_iObjectives[client][CS_TEAM_NONE].Score, g_iObjectives[client][CS_TEAM_CT].Kill, g_iObjectives[client][CS_TEAM_T].Kill, g_iObjectives[client][CS_TEAM_CT].Death, g_iObjectives[client][CS_TEAM_T].Death, g_iObjectives[client][CS_TEAM_CT].Assist, g_iObjectives[client][CS_TEAM_T].Assist, g_iObjectives[client][CS_TEAM_CT].Headshot, g_iObjectives[client][CS_TEAM_T].Headshot, g_iObjectives[client][CS_TEAM_CT].Suicide, g_iObjectives[client][CS_TEAM_T].Suicide, g_iObjectives[client][CS_TEAM_CT].TK, g_iObjectives[client][CS_TEAM_T].TK, g_iObjectives[client][CS_TEAM_CT].Damage, g_iObjectives[client][CS_TEAM_T].Damage, g_iObjectives[client][CS_TEAM_CT].Damaged, g_iObjectives[client][CS_TEAM_T].Damaged, g_iObjectives[client][CS_TEAM_T].BombPlanted, g_iObjectives[client][CS_TEAM_CT].BombDefused, g_iObjectives[client][CS_TEAM_T].BombFake, g_iObjectives[client][CS_TEAM_CT].BombFake, g_iObjectives[client][CS_TEAM_T].BombExploded, g_iObjectives[client][CS_TEAM_CT].Hostage, g_iObjectives[client][CS_TEAM_T].VIPKill, g_iObjectives[client][CS_TEAM_CT].VIPEscape, g_iObjectives[client][CS_TEAM_CT].VIPPlay, g_iObjectives[client][CS_TEAM_CT].MVP, g_iObjectives[client][CS_TEAM_T].MVP, g_iObjectives[client][CS_TEAM_CT].Round, g_iObjectives[client][CS_TEAM_T].Round, g_iObjectives[client][CS_TEAM_CT].Win, g_iObjectives[client][CS_TEAM_T].Win, g_iObjectives[client][CS_TEAM_CT].OneHP, g_iObjectives[client][CS_TEAM_T].OneHP, 
+									  g_iObjectives[client][CS_TEAM_NONE].Score, g_iObjectives[client][CS_TEAM_CT].Kill, g_iObjectives[client][CS_TEAM_T].Kill, g_iObjectives[client][CS_TEAM_CT].Death, g_iObjectives[client][CS_TEAM_T].Death, g_iObjectives[client][CS_TEAM_CT].Assist, g_iObjectives[client][CS_TEAM_T].Assist, g_iObjectives[client][CS_TEAM_CT].Headshot, g_iObjectives[client][CS_TEAM_T].Headshot, g_iObjectives[client][CS_TEAM_CT].Suicide, g_iObjectives[client][CS_TEAM_T].Suicide, g_iObjectives[client][CS_TEAM_CT].TK, g_iObjectives[client][CS_TEAM_T].TK, g_iObjectives[client][CS_TEAM_CT].Damage, g_iObjectives[client][CS_TEAM_T].Damage, g_iObjectives[client][CS_TEAM_CT].Damaged, g_iObjectives[client][CS_TEAM_T].Damaged, g_iObjectives[client][CS_TEAM_T].BombPlanted, g_iObjectives[client][CS_TEAM_CT].BombDefused, g_iObjectives[client][CS_TEAM_T].BombFake, g_iObjectives[client][CS_TEAM_CT].BombFake, g_iObjectives[client][CS_TEAM_T].BombExploded, g_iObjectives[client][CS_TEAM_CT].Hostage, g_iObjectives[client][CS_TEAM_T].VIPKill, g_iObjectives[client][CS_TEAM_CT].VIPEscape, g_iObjectives[client][CS_TEAM_CT].VIPPlay, g_iObjectives[client][CS_TEAM_CT].MVP, g_iObjectives[client][CS_TEAM_T].MVP, g_iObjectives[client][CS_TEAM_CT].Round, g_iObjectives[client][CS_TEAM_T].Round, g_iObjectives[client][CS_TEAM_CT].Win, g_iObjectives[client][CS_TEAM_T].Win, g_iObjectives[client][CS_TEAM_CT].OneHP, g_iObjectives[client][CS_TEAM_T].OneHP);
 	txn.AddQuery(g_sSQLBuffer);
 }
 
 void DB_UpdatePlayer_Weapons(int client, Transaction txn)
 {
-	for (int weaponNum = 0; weaponNum < view_as<int>(WEAPON); weaponNum++)
+	for (int weaponNum = 0; weaponNum < sizeof(g_sWeapons); weaponNum++)
 	{
 		Format(g_sSQLBuffer, sizeof(g_sSQLBuffer),
 			"INSERT IGNORE INTO mystats_weapons (accountid, server, weapon, killCT, killT, shotCT, shotT, hitCT, hitT, damageCT, damageT, headshotCT, headshotT, noscopeCT, noscopeT, boughtCT, boughtT) VALUES ('%i', '%s', '%s', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i') ON DUPLICATE KEY UPDATE killCT = killCT + '%i', killT = killT + '%i', shotCT = shotCT + '%i', shotT = shotT + '%i', hitCT = hitCT + '%i', hitT = hitT + '%i', damageCT = damageCT + '%i', damageT = damageT + '%i', headshotCT = headshotCT + '%i', headshotT = headshotT + '%i', noscopeCT = noscopeCT + '%i', noscopeT = headshotT + '%i', boughtCT = boughtCT + '%i', boughtT = boughtT + '%i';", 
-			g_iID[client], g_sServerName, g_sWeapons[weaponNum], g_iWeapons[client][TEAM_CT][weaponNum][KILL], g_iWeapons[client][TEAM_T][weaponNum][KILL], g_iWeapons[client][TEAM_CT][weaponNum][SHOT], g_iWeapons[client][TEAM_T][weaponNum][SHOT], g_iWeapons[client][TEAM_CT][weaponNum][HIT], g_iWeapons[client][TEAM_T][weaponNum][HIT], g_iWeapons[client][TEAM_CT][weaponNum][DAMAGE], g_iWeapons[client][TEAM_T][weaponNum][DAMAGE], g_iWeapons[client][TEAM_CT][weaponNum][HEADSHOT], g_iWeapons[client][TEAM_T][weaponNum][HEADSHOT], g_iWeapons[client][TEAM_CT][weaponNum][NOSCOPE], g_iWeapons[client][TEAM_T][weaponNum][NOSCOPE], g_iWeapons[client][TEAM_CT][weaponNum][BOUGHT], g_iWeapons[client][TEAM_T][weaponNum][BOUGHT], 
-																 g_iWeapons[client][TEAM_CT][weaponNum][KILL], g_iWeapons[client][TEAM_T][weaponNum][KILL], g_iWeapons[client][TEAM_CT][weaponNum][SHOT], g_iWeapons[client][TEAM_T][weaponNum][SHOT], g_iWeapons[client][TEAM_CT][weaponNum][HIT], g_iWeapons[client][TEAM_T][weaponNum][HIT], g_iWeapons[client][TEAM_CT][weaponNum][DAMAGE], g_iWeapons[client][TEAM_T][weaponNum][DAMAGE], g_iWeapons[client][TEAM_CT][weaponNum][HEADSHOT], g_iWeapons[client][TEAM_T][weaponNum][HEADSHOT], g_iWeapons[client][TEAM_CT][weaponNum][NOSCOPE], g_iWeapons[client][TEAM_T][weaponNum][NOSCOPE], g_iWeapons[client][TEAM_CT][weaponNum][BOUGHT], g_iWeapons[client][TEAM_T][weaponNum][BOUGHT]);
+			g_iID[client], g_sServerName, g_sWeapons[weaponNum], g_iWeapons[client][CS_TEAM_CT][weaponNum].Kill, g_iWeapons[client][CS_TEAM_T][weaponNum].Kill, g_iWeapons[client][CS_TEAM_CT][weaponNum].Shot, g_iWeapons[client][CS_TEAM_T][weaponNum].Shot, g_iWeapons[client][CS_TEAM_CT][weaponNum].Hit, g_iWeapons[client][CS_TEAM_T][weaponNum].Hit, g_iWeapons[client][CS_TEAM_CT][weaponNum].Damage, g_iWeapons[client][CS_TEAM_T][weaponNum].Damage, g_iWeapons[client][CS_TEAM_CT][weaponNum].Headshot, g_iWeapons[client][CS_TEAM_T][weaponNum].Headshot, g_iWeapons[client][CS_TEAM_CT][weaponNum].NoScope, g_iWeapons[client][CS_TEAM_T][weaponNum].NoScope, g_iWeapons[client][CS_TEAM_CT][weaponNum].Bought, g_iWeapons[client][CS_TEAM_T][weaponNum].Bought, 
+																 g_iWeapons[client][CS_TEAM_CT][weaponNum].Kill, g_iWeapons[client][CS_TEAM_T][weaponNum].Kill, g_iWeapons[client][CS_TEAM_CT][weaponNum].Shot, g_iWeapons[client][CS_TEAM_T][weaponNum].Shot, g_iWeapons[client][CS_TEAM_CT][weaponNum].Hit, g_iWeapons[client][CS_TEAM_T][weaponNum].Hit, g_iWeapons[client][CS_TEAM_CT][weaponNum].Damage, g_iWeapons[client][CS_TEAM_T][weaponNum].Damage, g_iWeapons[client][CS_TEAM_CT][weaponNum].Headshot, g_iWeapons[client][CS_TEAM_T][weaponNum].Headshot, g_iWeapons[client][CS_TEAM_CT][weaponNum].NoScope, g_iWeapons[client][CS_TEAM_T][weaponNum].NoScope, g_iWeapons[client][CS_TEAM_CT][weaponNum].Bought, g_iWeapons[client][CS_TEAM_T][weaponNum].Bought);
 		txn.AddQuery(g_sSQLBuffer);
 	}
 }
 
 void DB_UpdatePlayer_Hits(int client, Transaction txn)
 {
-	for (int weaponNum = 0; weaponNum < view_as<int>(WEAPON); weaponNum++)
+	for (int weaponNum = 0; weaponNum < sizeof(g_sWeapons); weaponNum++)
 	{
 		Format(g_sSQLBuffer, sizeof(g_sSQLBuffer),
 			"INSERT IGNORE INTO mystats_hits (accountid, server, weapon, headCT, headT, chestCT, chestT, stomachCT, stomachT, left_armCT, left_armT, right_armCT, right_armT, left_legCT, left_legT, right_legCT, right_legT) VALUES ('%i', '%s', '%s', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i', '%i') ON DUPLICATE KEY UPDATE headCT = headCT + '%i', headT = headT + '%i', chestCT = chestCT + '%i', chestT = chestT + '%i', stomachCT = stomachCT + '%i', stomachT = stomachT + '%i', left_armCT = left_armCT + '%i', left_armT = left_armT + '%i', right_armCT = right_armCT + '%i', right_armT = right_armT + '%i', left_legCT = left_legCT + '%i', left_legT = left_legT + '%i', right_legCT = right_legCT + '%i', right_legT = right_legT + '%i';", 
-			g_iID[client], g_sServerName, g_sWeapons[weaponNum], g_iWeapons[client][TEAM_CT][weaponNum][HEAD], g_iWeapons[client][TEAM_T][weaponNum][HEAD], g_iWeapons[client][TEAM_CT][weaponNum][CHEST], g_iWeapons[client][TEAM_T][weaponNum][CHEST], g_iWeapons[client][TEAM_CT][weaponNum][STOMACH], g_iWeapons[client][TEAM_T][weaponNum][STOMACH], g_iWeapons[client][TEAM_CT][weaponNum][LEFT_ARM], g_iWeapons[client][TEAM_T][weaponNum][LEFT_ARM], g_iWeapons[client][TEAM_CT][weaponNum][RIGHT_ARM], g_iWeapons[client][TEAM_T][weaponNum][RIGHT_ARM], g_iWeapons[client][TEAM_CT][weaponNum][LEFT_LEG], g_iWeapons[client][TEAM_T][weaponNum][LEFT_LEG], g_iWeapons[client][TEAM_CT][weaponNum][RIGHT_LEG], g_iWeapons[client][TEAM_T][weaponNum][RIGHT_LEG], 
-																 g_iWeapons[client][TEAM_CT][weaponNum][HEAD], g_iWeapons[client][TEAM_T][weaponNum][HEAD], g_iWeapons[client][TEAM_CT][weaponNum][CHEST], g_iWeapons[client][TEAM_T][weaponNum][CHEST], g_iWeapons[client][TEAM_CT][weaponNum][STOMACH], g_iWeapons[client][TEAM_T][weaponNum][STOMACH], g_iWeapons[client][TEAM_CT][weaponNum][LEFT_ARM], g_iWeapons[client][TEAM_T][weaponNum][LEFT_ARM], g_iWeapons[client][TEAM_CT][weaponNum][RIGHT_ARM], g_iWeapons[client][TEAM_T][weaponNum][RIGHT_ARM], g_iWeapons[client][TEAM_CT][weaponNum][LEFT_LEG], g_iWeapons[client][TEAM_T][weaponNum][LEFT_LEG], g_iWeapons[client][TEAM_CT][weaponNum][RIGHT_LEG], g_iWeapons[client][TEAM_T][weaponNum][RIGHT_LEG]);
+			g_iID[client], g_sServerName, g_sWeapons[weaponNum], g_iWeapons[client][CS_TEAM_CT][weaponNum].Head, g_iWeapons[client][CS_TEAM_T][weaponNum].Head, g_iWeapons[client][CS_TEAM_CT][weaponNum].Chest, g_iWeapons[client][CS_TEAM_T][weaponNum].Chest, g_iWeapons[client][CS_TEAM_CT][weaponNum].Stomach, g_iWeapons[client][CS_TEAM_T][weaponNum].Stomach, g_iWeapons[client][CS_TEAM_CT][weaponNum].LeftArm, g_iWeapons[client][CS_TEAM_T][weaponNum].LeftArm, g_iWeapons[client][CS_TEAM_CT][weaponNum].RightArm, g_iWeapons[client][CS_TEAM_T][weaponNum].RightArm, g_iWeapons[client][CS_TEAM_CT][weaponNum].LeftLeg, g_iWeapons[client][CS_TEAM_T][weaponNum].LeftLeg, g_iWeapons[client][CS_TEAM_CT][weaponNum].RightLeg, g_iWeapons[client][CS_TEAM_T][weaponNum].RightLeg, 
+																 g_iWeapons[client][CS_TEAM_CT][weaponNum].Head, g_iWeapons[client][CS_TEAM_T][weaponNum].Head, g_iWeapons[client][CS_TEAM_CT][weaponNum].Chest, g_iWeapons[client][CS_TEAM_T][weaponNum].Chest, g_iWeapons[client][CS_TEAM_CT][weaponNum].Stomach, g_iWeapons[client][CS_TEAM_T][weaponNum].Stomach, g_iWeapons[client][CS_TEAM_CT][weaponNum].LeftArm, g_iWeapons[client][CS_TEAM_T][weaponNum].LeftArm, g_iWeapons[client][CS_TEAM_CT][weaponNum].RightArm, g_iWeapons[client][CS_TEAM_T][weaponNum].RightArm, g_iWeapons[client][CS_TEAM_CT][weaponNum].LeftLeg, g_iWeapons[client][CS_TEAM_T][weaponNum].LeftLeg, g_iWeapons[client][CS_TEAM_CT][weaponNum].RightLeg, g_iWeapons[client][CS_TEAM_T][weaponNum].RightLeg);
 		txn.AddQuery(g_sSQLBuffer);
 	}
 }
@@ -1326,7 +1861,7 @@ int GetWeaponNum(char[] weaponname)
 {
 	int weaponNum;
 
-	for (weaponNum = 0; weaponNum < view_as<int>(WEAPON); weaponNum++)
+	for (weaponNum = 0; weaponNum < sizeof(g_sWeapons); weaponNum++)
 	{
 		if (StrEqual(weaponname, g_sWeapons[weaponNum]))
 			break;
